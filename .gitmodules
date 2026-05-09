@@ -1,0 +1,6 @@
+[submodule "My-db"]
+	path = My-db
+	url = https://github.com/GreenCurve/My-db
+[submodule "Spider-mollusk"]
+	path = Spider-mollusk
+	url = https://github.com/GreenCurve/Spider-mollusk
