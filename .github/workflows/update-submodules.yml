@@ -1,0 +1,23 @@
+name: Update submodules
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.META_REPO_TOKEN }}
+          submodules: true
+
+      - name: Update all submodules
+        run: git submodule update --remote
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet && git diff --staged --quiet || \
+            (git commit -am "chore: auto-bump submodules" && git push)
